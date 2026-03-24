@@ -1,6 +1,40 @@
 # ![Programación Backend III: Testing y Escalabilidad Backend](https://img.shields.io/badge/CURSO%3A-%20PROGRAMACION%20BACKEND%20III-red?style=plastic&logo=codementor)
 
-## Coderhouse - Comision 96765
+## Imagen en DockerHub
+
+Link de la imagen en DockerHub:
+[https://hub.docker.com/r/tsarien/adoptme-backend](https://hub.docker.com/r/tsarien/adoptme-backend)
+
+### Ejecutar con Docker
+
+Descarga y corre la imagen directamente desde DockerHub:
+
+```bash
+docker pull tsarien/adoptme-backend:latest
+```
+
+### Ejecutar en local
+
+Clona el repositorio e instala las dependencias:
+
+```bash
+npm install
+npm start
+```
+
+La app estará disponible en `http://localhost:8080`.
+
+### Ejecutar tests
+
+```bash
+npm test
+```
+
+### Documentación Swagger
+
+La documentación interactiva de la API está disponible en: `http://localhost:8080/api-docs`
+
+# Coderhouse - Comision 96765
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![Node.js](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
