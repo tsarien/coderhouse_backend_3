@@ -1,0 +1,206 @@
+paths:
+  /api/adoptions:
+    get:
+      summary: Obtener todas las adopciones
+      tags:
+        - Adoptions
+      description: Retorna la lista completa de adopciones registradas
+      responses:
+        200:
+          description: Lista de adopciones obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Adoption"
+
+  /api/adoptions/{aid}:
+    get:
+      summary: Obtener una adopción por ID
+      tags:
+        - Adoptions
+      description: Retorna la información de una adopción específica
+      parameters:
+        - in: path
+          name: aid
+          required: true
+          schema:
+            type: string
+          description: ID de la adopción
+          example: 69c2a63a22688a6de73479c8
+      responses:
+        200:
+          description: Adopción encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: "#/components/schemas/Adoption"
+
+  /api/adoptions/{uid}/{pid}:
+    post:
+      summary: Crear una nueva adopción
+      tags:
+        - Adoptions
+      description: Registra una adopción vinculando un usuario con una mascota.
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: ID del usuario que adopta
+          example: 69c2a63a22688a6de73479c8
+        - in: path
+          name: pid
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota a adoptar
+          example: 69c2a63822688a6de73479be
+      responses:
+        200:
+          description: Adopción creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Pet is already adopted
+        404:
+          description: Usuario o mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                userNotFound:
+                  value:
+                    status: error
+                    error:
+                      message: User not found
+                petNotFound:
+                  value:
+                    status: error
+                    error:
+                      message: Pet not found
+
+components:
+  schemas:
+    Adoption:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID único de la adopción
+          example: 69c2a63a22688a6de73479c8
+        owner:
+          type: string
+          description: ID del usuario que adoptó
+          example: 69c2a63822688a6de73479be
+        pet:
+          type: string
+          description: ID de la mascota adoptada
+          example: 69c2a63822688a6de73479c0
+      example:
+        _id: 69c2a63a22688a6de73479c8
+        owner: 69c2a63822688a6de73479be
+        pet: 69c2a63822688a6de73479c0
+
+    AdoptionPopulated:
+      type: object
+      description: Adopción con información completa de usuario y mascota
+      properties:
+        _id:
+          type: string
+          example: 69c2a63a22688a6de73479c8
+        owner:
+          $ref: "#/components/schemas/User"
+        pet:
+          $ref: "#/components/schemas/Pet"
+
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 69c2a63822688a6de73479be
+        first_name:
+          type: string
+          example: Juan
+        last_name:
+          type: string
+          example: Pérez
+        email:
+          type: string
+          example: juan.perez@example.com
+        role:
+          type: string
+          example: user
+        pets:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 69c2a63822688a6de73479c0
+
+    Pet:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 69c2a63822688a6de73479c0
+        name:
+          type: string
+          example: Polish Lowland Sheepdog
+        specie:
+          type: string
+          example: hamster
+        birthDate:
+          type: string
+          format: date-time
+          example: 2025-05-26T07:18:27.990Z
+        adopted:
+          type: boolean
+          example: true
+        owner:
+          type: string
+          example: 69c2a63822688a6de73479be
+        image:
+          type: string
+          example: "https://picsum.photos/seed/2u5HwabrJ/1418/1971"
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Adoption record not found
+            details:
+              type: object
+              description: Información adicional sobre el error

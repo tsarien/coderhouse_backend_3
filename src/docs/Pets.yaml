@@ -1,0 +1,239 @@
+paths:
+  /api/pets:
+    get:
+      summary: Obtener todas las mascotas
+      tags:
+        - Pets
+      description: Retorna la lista de las mascotas registradas en el sistema
+      responses:
+        200:
+          description: Lista de mascotas obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Pet"
+
+    post:
+      summary: Crear una nueva mascota
+      tags:
+        - Pets
+      description: Registra una nueva mascota en el sistema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - specie
+                - birthDate
+              properties:
+                name:
+                  type: string
+                  description: Nombre de la mascota
+                  example: Polish Lowland Sheepdog
+                specie:
+                  type: string
+                  description: Especie de la mascota
+                  example: hasmter
+                birthDate:
+                  type: string
+                  format: date
+                  description: Fecha de nacimiento
+                  example: 2025-05-26T07:18:27.990Z
+      responses:
+        200:
+          description: Mascota creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: "#/components/schemas/Pet"
+
+  /api/pets/{pid}:
+    get:
+      summary: Obtener una mascota por ID
+      tags:
+        - Pets
+      description: Retorna la información de una mascota específica
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota
+          example: 69909ff5ef8cb993e1692cfc
+      responses:
+        200:
+          description: Mascota encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: "#/components/schemas/Pet"
+        404:
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                status: error
+                error:
+                  message: Pet not found
+
+    put:
+      summary: Actualizar una mascota
+      tags:
+        - Pets
+      description: Actualiza la información de una mascota existente
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota
+          example: 69909ff5ef8cb993e1692cfc
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Polish Lowland Sheepdog
+                specie:
+                  type: string
+                  example: hamster
+                birthDate:
+                  type: string
+                  format: date
+                  example: 2025-05-26T07:18:27.990Z
+                adopted:
+                  type: boolean
+                  example: false
+      responses:
+        200:
+          description: Mascota actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: pet updated
+        404:
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      summary: Eliminar una mascota
+      tags:
+        - Pets
+      description: Elimina una mascota del sistema
+      parameters:
+        - in: path
+          name: pid
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota
+          example: 69909ff5ef8cb993e1692cfc
+      responses:
+        200:
+          description: Mascota eliminada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: pet deleted
+        404:
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID único de la mascota
+          example: 69909ff5ef8cb993e1692cfc
+        name:
+          type: string
+          description: Nombre de la mascota
+          example: Polish Lowland Sheepdog
+        specie:
+          type: string
+          description: Especie de la mascota
+          example: hamster
+        birthDate:
+          type: string
+          format: date-time
+          description: Fecha de nacimiento
+          example: 2025-05-26T07:18:27.990Z
+        adopted:
+          type: boolean
+          description: Estado de adopción
+          example: false
+        owner:
+          type: string
+          description: ID del dueño (si está adoptada)
+          example: 507f1f77bcf86cd799439012
+        image:
+          type: string
+          description: URL o path de la imagen
+          example: "https://picsum.photos/seed/2u5HwabrJ/1418/1971"
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Pet not found
