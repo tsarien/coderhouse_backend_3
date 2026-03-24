@@ -67,71 +67,72 @@ Crear un módulo de Mocking para generar usuarios de acuerdo a un parámetro num
 
 - Se comprueba la inserción de registros mediante los servicios GET de users y pets, asegurando que los registros generados estén disponibles y sean accesibles.
 
-Entrega Final
+## Entrega Final
 
-Dockerizando nuestro Proyecto
+### Dockerizando nuestro Proyecto
 
-Objetivos generales
+#### Objetivos generales
 
 Implementar las últimas mejoras en nuestro proyecto y Dockerizarlo.
 
-Objetivos específicos
+### Objetivos específicos
 
-Documentar las rutas restantes de nuestro proyecto.
+- Documentar las rutas restantes de nuestro proyecto.
 
-Añadir los últimos tests
+- Añadir los últimos tests
 
-Crear una imagen de Docker.
+- Crear una imagen de Docker.
 
-Se debe entregar
+### Se debe entregar
 
-Documentar con Swagger el módulo de “Users”.
+Documentar con Swagger el módulo de `Users`.
 
-Se debe entregar
+### Se debe entregar
 
-Desarrollar los tests funcionales para todos los endpoints del router “adoption.router.js”.
+- Desarrollar los tests funcionales para todos los endpoints del router `adoption.router.js`.
 
-Desarrollar el Dockerfile para generar una imagen del proyecto.
+- Desarrollar el Dockerfile para generar una imagen del proyecto.
 
-Subir la imagen de Docker a Dockerhub y añadir en un ReadMe.md al proyecto que contenga el link de dicha imagen.
+- Subir la imagen de Docker a Dockerhub y añadir en un `ReadMe.md` al proyecto que contenga el link de dicha imagen.
 
-Se debe entregar
+### Se debe entregar
 
-Desarrollar los tests funcionales para todos los endpoints del router “adoption.router.js”.
+- Desarrollar los tests funcionales para todos los endpoints del router `adoption.router.js`.
 
-Desarrollar el Dockerfile para generar una imagen del proyecto.
+- Desarrollar el Dockerfile para generar una imagen del proyecto.
 
-Subir la imagen de Docker a Dockerhub y añadir en un ReadMe.md al proyecto que contenga el link de dicha imagen.
+- Subir la imagen de Docker a Dockerhub y añadir en un `ReadMe.md` al proyecto que contenga el link de dicha imagen.
 
-Criterios:
+### Criterios
+
 Desarrollo de Tests Funcionales:
 
-Se han desarrollado tests funcionales para todos los endpoints del router adoption.router.js.
+- Se han desarrollado tests funcionales para todos los endpoints del router `adoption.router.js`.
 
-Todos los endpoints del router adoption.router.js están cubiertos por tests funcionales.
+- Todos los endpoints del router `adoption.router.js` están cubiertos por tests funcionales.
 
-Los tests verifican de manera efectiva el funcionamiento de cada endpoint, incluyendo casos de éxito y casos de error.
+- Los tests verifican de manera efectiva el funcionamiento de cada endpoint, incluyendo casos de éxito y casos de error.
 
 Creación del Dockerfile:
 
-Se ha creado un Dockerfile que permite generar una imagen del proyecto de manera adecuada.
+- Se ha creado un Dockerfile que permite generar una imagen del proyecto de manera adecuada.
 
-El Dockerfile está correctamente configurado para construir la imagen del proyecto de forma reproducible.
+- El Dockerfile está correctamente configurado para construir la imagen del proyecto de forma reproducible.
 
-Se incluyen todos los pasos necesarios en el Dockerfile para instalar las dependencias, copiar los archivos del proyecto y configurar el entorno de ejecución.
+- Se incluyen todos los pasos necesarios en el Dockerfile para instalar las dependencias, copiar los archivos del proyecto y configurar el entorno de ejecución.
 
 Subida de la Imagen a Dockerhub:
 
-Se ha subido la imagen generada del proyecto a Dockerhub.
+- Se ha subido la imagen generada del proyecto a Dockerhub.
 
-La imagen del proyecto se encuentra disponible en Dockerhub y es accesible a través de un enlace público.
+- La imagen del proyecto se encuentra disponible en Dockerhub y es accesible a través de un enlace público.
 
-Se ha añadido un ReadMe.md al proyecto que contiene el enlace a la imagen de Dockerhub.
+- Se ha añadido un ReadMe.md al proyecto que contiene el enlace a la imagen de Dockerhub.
 
 Documentación en ReadMe.md:
 
-El ReadMe.md del proyecto contiene información detallada, incluyendo el enlace a la imagen de Dockerhub.
+- El ReadMe.md del proyecto contiene información detallada, incluyendo el enlace a la imagen de Dockerhub.
 
-El ReadMe.md proporciona instrucciones claras para ejecutar el proyecto con Docker y acceder a la imagen en Dockerhub.
+- El ReadMe.md proporciona instrucciones claras para ejecutar el proyecto con Docker y acceder a la imagen en Dockerhub.
 
-Se incluyen detalles sobre cómo construir la imagen, ejecutar el contenedor y utilizar el proyecto de manera efectiva.
+- Se incluyen detalles sobre cómo construir la imagen, ejecutar el contenedor y utilizar el proyecto de manera efectiva.
